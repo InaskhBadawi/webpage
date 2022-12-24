@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+            $(document).ready (function() {
+
+                $("#Save").click(function(){
+                    var City = new Object();
+                    City.CityName = $('#Name').val();
+
+                    $.ajax({
+                        url: 'https://localhost:5001/Cities/Create',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: City,
+                        success: function (data, textStatus, xhr) {
+                            console.log(data);
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            console.log('Error in Operation');
+                        }
+                    });
+                });
+            });
+
+        </script>
+
+    </head>
+    <body>
+
+        <h1>This is Example of consume Post Resful API</h1>
+        <hr>
+        <br>
+
+        <div>
+            <form id="forml">
+                City name :- <input type="text" name="Name" id="Name"/>
+                            <input type="button" value="Save Data" id="Save"/>
+            </form>
+        </div>
+
+    </body>
+</html>
